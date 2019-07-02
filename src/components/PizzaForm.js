@@ -2,17 +2,8 @@ import React from "react"
 
 
 const PizzaForm = (props) => {
-
-  const changeRadioButtons = (e) => {
-    if(e.target.value === 'Vegetarian')
-      props.updateNewPizza('vegetarian', true)
-    else
-      props.updateNewPizza('vegetarian', false)
-  }
-
   return(
       <div className="form-row">
-        <input id="pizza-id" value={props.id} hidden />
         <div className="col-5">
           <input onChange={(e)=> props.updateNewPizza('topping', e.target.value)} type="text" className="form-control" placeholder="Pizza Topping" value={props.pizza.topping}/>
         </div>
@@ -27,25 +18,22 @@ const PizzaForm = (props) => {
 
         <div className="col">
           <div className="form-check">
-            <input onChange={changeRadioButtons} className="form-check-input" type="radio" value="Vegetarian" checked={props.pizza.vegetarian}/>
-            <label className="form-check-label">
-              Vegetarian
-            </label>
+            <input onChange={(e)=> props.updateNewPizza('vegetarian', e.target.value==='true')} className="form-check-input" type="radio" value="true" checked={props.pizza.vegetarian === null ? false : props.pizza.vegetarian}/>
+            <label className="form-check-label">Vegetarian</label>
           </div>
 
           <div className="form-check">
-            <input onChange={changeRadioButtons} className="form-check-input" type="radio" value="Not Vegetarian" checked={!props.pizza.vegetarian}/>
-            <label className="form-check-label">
-              Not Vegetarian
-            </label>
+            <input onChange={(e)=> props.updateNewPizza('vegetarian', e.target.value==='true')} className="form-check-input" type="radio" value="false" checked={props.pizza.vegetarian === null ? false : !props.pizza.vegetarian}/>
+            <label className="form-check-label">Not Vegetarian</label>
           </div>
         </div>
 
         <div className="col">
-          <button type="submit" className="btn btn-success" onClick={props.submitPizza}>Submit</button>
+          <button className="btn btn-success" onClick={props.submitPizza}>Submit</button>
+          <br/><br/>
+          <button className="btn btn-danger" onClick={props.clearPizza}>Clear</button>
         </div>
       </div>
-
   )
 }
 

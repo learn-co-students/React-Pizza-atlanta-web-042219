@@ -2,15 +2,15 @@
   "pizzas": [
     {
       "id": 1,
-      "topping": "Done!",
+      "topping": "Done",
       "size": "Small",
       "vegetarian": true
     },
     {
       "id": 2,
-      "topping": "Pepperoni",
-      "size": "Small",
-      "vegetarian": false
+      "topping": "Pepperoni pizza",
+      "size": "Medium",
+      "vegetarian": true
     },
     {
       "id": 3,
@@ -65,6 +65,12 @@
       "topping": "Works?",
       "size": "Large",
       "vegetarian": true
+    },
+    {
+      "id": 12,
+      "topping": "new pizza - bacon",
+      "size": "Large",
+      "vegetarian": false
     }
   ]
 }

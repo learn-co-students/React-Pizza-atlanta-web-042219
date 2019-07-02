@@ -13,7 +13,7 @@ class App extends Component {
 			id: '',
 			topping: '',
 			size: 'Small',
-			vegetarian: false
+			vegetarian: null
 		}
 	}
 
@@ -21,6 +21,17 @@ class App extends Component {
 		this.setState({ pizza: {
 				...this.state.pizza,
 				[attr]: value
+			}
+		})
+	}
+
+	clearPizza = (e)=> {
+		this.setState({
+			pizza: {
+				id: '',
+				topping: '',
+				size: 'Small',
+				vegetarian: null
 			}
 		})
 	}
@@ -41,7 +52,15 @@ class App extends Component {
 		.then(newPizza => {
 			let newPizzaArray = [...this.state.allPizzas.filter(pizza => pizza.id !== newPizza.id), newPizza]
 			newPizzaArray.sort((a,b) => a.id - b.id )
-			this.setState({ allPizzas: newPizzaArray })
+			this.setState({
+				allPizzas: newPizzaArray,
+				pizza: {
+					id: '',
+					topping: '',
+					size: 'Small',
+					vegetarian: null
+				}
+			})
 		})
 	}
 
@@ -54,11 +73,10 @@ class App extends Component {
 	}
 
   render() {
-  	console.log(this.state)
     return (
       <Fragment>
         <h1 className="text-center">Welcome to Flatiron School's Pizzeria</h1>
-        <PizzaForm pizza={this.state.pizza} updateNewPizza={this.updateNewPizza} submitPizza={this.submitPizza} />
+        <PizzaForm pizza={this.state.pizza} updateNewPizza={this.updateNewPizza} submitPizza={this.submitPizza} clearPizza={this.clearPizza} />
         <PizzaList allPizzas={this.state.allPizzas} editPizzaBtn={this.editPizzaBtn} />
       </Fragment>
     );
