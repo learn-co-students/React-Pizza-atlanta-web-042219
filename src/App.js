@@ -8,13 +8,20 @@ class App extends Component {
     super()
     this.state = {
       pizzas: [],
-      pizzaToEdit: []
+      pizzaToEdit: {
+        id: '',
+        topping: '',
+        size: '',
+        vegetarian: false
+      }
     }
   }
+
 
   componentDidMount() {
     this.fetchPizza()
   }
+
 
   fetchPizza() {
     fetch('http://localhost:3000/pizzas')
@@ -24,40 +31,44 @@ class App extends Component {
     }))
   }
 
+
   handleEditPizza = (pizzaObject) => {
-    console.log('handleEditPizza', pizzaObject)
+    // console.log('handleEditPizza', pizzaObject)
     this.setState({pizzaToEdit: pizzaObject})
   }
 
-  handleChange = (event) => {
-    console.log(event.target.value ,event.target.value==='false')
 
-    if (event.target.value === 'true') return event.target.value = true
-    else event.target.value = false
-    
+  handleChange = (attr, value) => {
+    // console.log('handleChange:', attr, value)
     this.setState({
-      pizzaToEdit: {...this.state.pizzaToEdit,
-        [event.target.name]: event.target.value}
+      pizzaToEdit: {...this.state.pizzaToEdit, [attr]: value}
     })
   }
 
-  handleSubmit = (pizzaObject) => {
-    console.log('handleSubmit', pizzaObject)
 
+  handleSubmit = (pizzaObject) => {
+    // console.log('handleSubmit', pizzaObject)
     let pizzaWithEdits = this.state.pizzas.map(pizza => {
       if (pizza.id === pizzaObject.id) return pizzaObject
       else return pizza
     })
 
-    this.setState({pizzas: pizzaWithEdits})
+    fetch(`http://localhost:3000/pizzas/${pizzaObject.id}`, {
+      method: 'PATCH',
+      headers: {'Content-Type': 'application/json', Accepts: 'application/json'},
+      body: JSON.stringify(pizzaObject)
+    })
+    .then(resp => resp.json())
+    .then(this.setState({pizzas: pizzaWithEdits}))
   }
+
 
   render() {
     return (
       <Fragment>
         <Header/>
-        <PizzaForm 
-          handleSubmit={this.handleSubmit} 
+        <PizzaForm
+          handleSubmit={this.handleSubmit}
           pizzaToEdit={this.state.pizzaToEdit}
           handleChange={this.handleChange}
         />
