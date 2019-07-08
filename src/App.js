@@ -45,10 +45,6 @@ class App extends Component {
 
   handleSubmit=()=> {
     console.log(this.state.editPizza)
-    // let pizzaWithEdits = this.state.pizzas.map(pizza => {
-    //   if (pizza.id === pizzaObject.id) {return pizzaObject
-    //   else return pizza}
-    // })
 
     fetch(`http://localhost:3000/pizzas/${this.state.editPizza.id}`, {
       method: 'PATCH',
@@ -62,7 +58,7 @@ class App extends Component {
     })
   }
   //   // e.preventDefault()
-  
+      
 
   render() {
     return (
