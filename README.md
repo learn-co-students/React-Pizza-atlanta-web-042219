@@ -3,7 +3,7 @@
 ![Pizza Screen Recording](https://curriculum-content.s3.amazonaws.com/react/pizza.gif)
 
 Welcome to your first day at the Access Labs Pizzeria!
-Today, you are tasked to building an online menu of all the pizzas that the pizzeria offers.
+Today, you are tasked with building an online menu of all the pizzas that the pizzeria offers.
 
 The database of orders can be found in a json-server, under `http://localhost:3000/pizzas`.
 Make sure that before you fire up your React server, you *first* fire up your json-server.
