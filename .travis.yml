@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+  - json-server db.json 
+  - npm run build
+deploy:
+  provider: heroku
+  app: my-pizza-ap
+  api_key:
+    secure: kdPS438PPrQc9y2qHNIpAunm3zrCvIeqWz69+p7xpGG1CfKSjF6w1JI3xTmN9KfHR8qIpurVowPuBiClihVXJPO4x2pze8TJ4w7Hb1gpqXSrCRMGfzNHEteh2uB7j6OuJbs7LTX4BZmt42ZoXnpvarYJjagZg9y69NCaJD2NVA3JgQ4aUsF4Vd8uzoppNfR4rmy4WP+QAiESbpoKBsDDI7POFRxctzURzBkgJBYuSCZF2YsVzbZSUrzaMzZ1N5SrDRxkCwCyNae14QGFiSOqEegdBufQaBL5KaxAYuOJd6H4ISxnbXdBZG0kRZ+HYdcMongxhyiyCLRqjjRO1uYl0kRNSzPN8zQNhTPtXiWNQuMQxFhiMt4BTa+HqtFD+R3Zn9JWsuN8Px7AVEeTmrzv4SiMSpuuOhYJCOK6VoGL3HS68PKf3cxr5wmsngFUHN+UlmpfXSvdH07ePh6TIuGmXt9HQ8kmfIYoK+XLSoU3YscQ7FTV505RyFMsfxKNvektnmJXpd7XMjdpG8h3RgAu9WosM9cgddhdmjDX/y0gF5sQ56KOloI8tSY2yp6yrOkUkt549YVs9ije4iWKR30WoxJk/AYlMoh6X9EIdUYqnAKP0zs6deeUaKFzM14CO+QW/BZiCOK1ru2FJrkHZHcHI2Uk0lFPkUxQUbBbfUsXQ1U=
+  on: master
